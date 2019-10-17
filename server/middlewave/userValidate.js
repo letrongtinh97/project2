@@ -1,14 +1,14 @@
 const db = require('../models/db');
 const moment = require('moment')
-
+const jwt = require('jsonwebtoken');
 // validate signIn
 module.exports.signIn = (req,res, next)=>{
     console.log('heeh')
     const { user_username } = req.body
     const query  = `
-        select user_username from tbl_profile_user where user_username =  ${user_username}
+        select user_username from tbl_profile_user where user_username =  '${user_username}'
         `
-        
+    console.log(query)
     db.postgre
         .run(query)
         .then((rs)=>{
@@ -18,7 +18,7 @@ module.exports.signIn = (req,res, next)=>{
                     code: 3
                 })
             }
-            next()
+            next();
         })
         .catch(()=>{
             return res.status(500).json({
@@ -27,17 +27,5 @@ module.exports.signIn = (req,res, next)=>{
         })
 
 }
-const premissonUser = (user) =>{
-    
-}
-//login
-module.exports.loginValidate =  (req,res, next)=>{
-    const {username, password} = req.body
-    if(!username || !password){
-        return res.status(500).json({
-            code: 2
-        })
-    }
 
-    next()
-}
+//login

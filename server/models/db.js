@@ -9,6 +9,7 @@ const dateOID = 1082
 types.setTypeParser(timestampOID, (v) => v)
 types.setTypeParser(timestamptzOID, (v) => v)
 types.setTypeParser(dateOID, (v) => v)
+pg.defaults.ssl = true;
 const config = {
     host: 'ec2-174-129-238-192.compute-1.amazonaws.com',
     user: 'pzukwjkekomcdj',
@@ -20,11 +21,7 @@ const config = {
     ssl: true,
 };
 
-/*
- *- Gọi tới database postgre
- *- Lưu lại log các query đã gọi tới postgre tại models/logs/{tháng + name}postgrelog.txt
- */
-const connectString = 'postgres://pzukwjkekomcdj:2e6b170e2fe5f0a79b3b8f0dafcc834f72ca102c84c55aa8a7a793ba187c3afb@ec2-174-129-238-192.compute-1.amazonaws.com:5432/da06suabogtfqo'
+
 const postgre = {
     run(query) {
         const pool = new pg.Pool(config)
@@ -48,12 +45,13 @@ const postgre = {
                     // query fail
                     throw error
                 }
-               
+
 
                 return result
             })
     },
 }
+
 
 
 module.exports = {
