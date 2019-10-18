@@ -16,8 +16,6 @@ const isAuthenticated = (req, res, next) => {
             if (err) {
                 res.status(400).json({ code: 1 })
             }
-            console.log(decoded);
-            decoded.user.username
             const query = ` select * from tbl_profile_user where user_username = '${decoded.user.username}' and  user_password = '${decoded.user.password}'`
             db.postgre
                 .run(query)

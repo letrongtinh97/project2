@@ -18,6 +18,7 @@ router.post('/get-a-user', (req, res) => {
     .then((rs)=>{
         return res.status(200).json({
             code: 0,  
+            data: rs.rows[0]
         })
     })
     .catch((err)=>{
@@ -30,13 +31,14 @@ router.post('/get-a-user', (req, res) => {
 router.get('/get-user', (req, res) => {
 
     const query = `
-        select * from  tbl_profile_user where 
+        select * from  tbl_profile_user 
     `
     db.postgre
     .run(query)
     .then((rs)=>{
         return res.status(200).json({
             code: 0,
+            data: rs.rows,
         })
     })
     .catch((err)=>{
