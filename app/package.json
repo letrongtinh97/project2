@@ -33,7 +33,7 @@
         "@fullcalendar/timegrid": "^4.0.1",
         "@zxing/ngx-scanner": "^2.0.1",
         "bootstrap": "3",
-        "chart.js": "^2.8.0",
+        "chart.js": "^2.9.4",
         "classlist.js": "^1.1.20150312",
         "core-js": "^3.2.1",
         "file-saver": "^2.0.2",
